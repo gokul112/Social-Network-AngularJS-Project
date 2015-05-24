@@ -6,23 +6,23 @@ app.constant('baseServiceUrl', 'http://softuni-ads.azurewebsites.net');
 
 app.config(function ($routeProvider) {
 
-    $routeProvider.when('/', {
-        templateUrl: 'index.html',
-        controller: 'HomeController'
-    });
-
-    $routeProvider.when('/login', {
-        templateUrl: 'partials/login.html',
-        controller: 'LoginController'
-    });
-
-    $routeProvider.when('/register', {
-        templateUrl: 'partials/register.html',
-        controller: 'RegisterController'
-    });
-    $routeProvider.otherwise(
-        { redirectTo: '/' }
-    );
+    $routeProvider
+        .when('/',
+            {
+                templateUrl: 'index.html',
+                controller: 'HomeController'
+            })
+        .when('/login',
+            {
+                templateUrl: 'partials/login.html',
+                controller: 'LoginController'
+            })
+        .when('/register',
+            {
+                templateUrl: 'partials/register.html',
+                controller: 'RegisterController'
+            })
+        .otherwise({  redirectTo: '/'});
 });
 
 app.run(function ($rootScope, $location, authService) {
