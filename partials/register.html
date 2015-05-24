@@ -1,0 +1,28 @@
+<form action="">
+    <fieldset id="Registration">
+        <legend>Register</legend>
+        <label for="username">Username:</label>
+        <input type="text" id="username" ng-model="userData.username" required />
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" ng-model="userData.password" required />
+        <br>
+        <label for="confirmPassword">Confirm password:</label>
+        <input type="password" id="confirmPassword" ng-model="userData.confirmPassword" required />
+        <br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" ng-model="userData.name" required />
+        <br>
+        <label for="email">Email:</label>
+        <input type="text" id="email" ng-model="userData.email" required />
+        <br>
+        <label >Gender:
+            <input type="radio" name="gender" value="male">Male
+            <input type="radio" name="gender" value="female">Female
+            <input type="radio" name="gender" value="other">Other
+        </label>
+    </fieldset>
+    <input type="reset" value="Clear Form">
+    <a ng-click="register(userData)" class="button">Register</a>
+    <a href="#/login" class="link">Login</a>
+</form>
