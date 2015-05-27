@@ -1,10 +1,5 @@
-<header ng-if="authService.isAnonymous()" id="app-header">
+<header id="app-header" data-ng-if="authService.isAnonymous()">
     <h1>Welcome to the Social Network</h1>
     <a href="#/login" class="link">Login</a>
     <a href="#/register" class="link">Register</a>
 </header>
-
-<div ng-if="authService.isLoggedIn()" class="user-area">
-    <span>{{authService.getCurrentUser().username}}</span>
-    <a ng-click="logout()" class="link">Logout</a>
-</div>

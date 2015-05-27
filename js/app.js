@@ -1,17 +1,17 @@
 'use strict';
 
-var app = angular.module('app', ['ngRoute', 'ngResource', 'ui.bootstrap.pagination']);
+var app = angular.module('app', ['ngRoute']);
 
-app.constant('baseServiceUrl', 'http://softuni-ads.azurewebsites.net');
+app.constant('baseServiceUrl', 'http://softuni-ads.azurewebsites.net/api');
 
 app.config(function ($routeProvider) {
 
     $routeProvider
         .when('/',
-            {
-                templateUrl: 'index.html',
-                controller: 'HomeController'
-            })
+        {
+            templateUrl:'partials/header.html',
+            controller: 'AppController',
+        })
         .when('/login',
             {
                 templateUrl: 'partials/login.html',
@@ -23,18 +23,4 @@ app.config(function ($routeProvider) {
                 controller: 'RegisterController'
             })
         .otherwise({  redirectTo: '/'});
-});
-
-app.run(function ($rootScope, $location, authService) {
-    $rootScope.$on('$locationChangeStart', function (event) {
-        if ($location.path().indexOf("/user/") != -1 && !authService.isLoggedIn()) {
-            $location.path("/");
-        }
-
-        if($location.path().indexOf("/user/ads") != -1) {
-            $rootScope.showStatuses = true;
-        } else {
-            $rootScope.showStatuses = false;
-        }
-    });
 });

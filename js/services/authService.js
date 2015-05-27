@@ -6,7 +6,7 @@ app.factory('authService',
             login: function(userData, success, error) {
                 var request = {
                     method: 'POST',
-                    url: baseServiceUrl + '/api/user/login',
+                    url: baseServiceUrl + '/user/login',
                     data: userData
                 };
                 $http(request).success(function(data) {
@@ -18,7 +18,7 @@ app.factory('authService',
             register: function(userData, success, error) {
                 var request = {
                     method: 'POST',
-                    url: baseServiceUrl + '/api/user/register',
+                    url: baseServiceUrl + '/user/register',
                     data: userData
                 };
                 $http(request).success(function(data) {
@@ -49,11 +49,6 @@ app.factory('authService',
             isNormalUser : function() {
                 var currentUser = this.getCurrentUser();
                 return (currentUser != undefined) && (!currentUser.isAdmin);
-            },
-
-            isAdmin : function() {
-                var currentUser = this.getCurrentUser();
-                return (currentUser != undefined) && (currentUser.isAdmin);
             },
 
             getAuthHeaders : function() {
