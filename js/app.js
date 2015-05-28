@@ -4,14 +4,14 @@ var app = angular.module('app', ['ngRoute']);
 
 app.constant('baseServiceUrl', 'http://softuni-ads.azurewebsites.net/api');
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $locationProvider) {
 
     $routeProvider
         .when('/',
-        {
-            templateUrl:'partials/header.html',
-            controller: 'AppController',
-        })
+            {
+                templateUrl:'partials/welcome.html',
+                controller: 'AppController'
+            })
         .when('/login',
             {
                 templateUrl: 'partials/login.html',

@@ -1,0 +1,24 @@
+<nav data-ng-if="authService.isLoggedIn()" class="navbar navbar-default">
+    <div class="container-fluid">
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">User</a>
+                </li>
+                <li>
+                    <a href="#/user/{{username}}/wall/">News Feed</a>
+                </li>
+                <li><a href="#/friends/requests/">Pending requests</a></li>
+                <li><a href="#/profile">Edit Profile</a></li>
+                <li><a href="#/profile/password">Edit Password</a></li>
+                <li><a href="#/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    <form method="get" action="" class="search">
+        <input class="frSearch" id="searchBox" title="Search" value="" lang="en" />
+        <input value="Search" id="submitButton" type="submit" />
+    </form>
+</nav>
+
+
