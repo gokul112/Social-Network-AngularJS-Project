@@ -27,67 +27,37 @@ app.factory('authService',
                 }).error(error);
             },
 
+            isLoggedIn : function() {
+                return sessionStorage['currentUser'] != undefined;
+            },
+
             logout: function() {
                 delete sessionStorage['currentUser'];
             },
 
             getCurrentUser : function() {
-                var userObject = sessionStorage['currentUser'];
-                if (userObject) {
-                    return JSON.parse(sessionStorage['currentUser']);
-                }
+                localStorage.setItem('accessToken', data['access_token']);
+                localStorage.setItem('username', data['userName']);
+                localStorage.setItem('name', data['name']);
             },
 
-            isAnonymous : function() {
-                return sessionStorage['currentUser'] == undefined;
+            clearCurrentUser : function() {
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('username');
+                localStorage.removeItem('name');;
             },
 
-            isLoggedIn : function() {
-                return sessionStorage['currentUser'] != undefined;
+            getAccessToken: function() {
+                return localStorage.getItem('accessToken');
             },
 
-            isNormalUser : function() {
-                var currentUser = this.getCurrentUser();
-                return (currentUser != undefined) && (!currentUser.isAdmin);
+            getUsername: function(userData, success, error) {
+                return localStorage.getItem('username');
             },
 
-            getAuthHeaders : function() {
-                var headers = {};
-                var currentUser = this.getCurrentUser();
-                if (currentUser) {
-                    headers['Authorization'] = 'Bearer ' + currentUser.access_token;
-                }
-                return headers;
-            },
-
-            getUserProfile: function(success, error) {
-                var request = {
-                    method: 'GET',
-                    url: baseServiceUrl + '/api/user/profile',
-                    headers: this.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            editUser: function(userData, success, error) {
-                var request = {
-                    method: 'PUT',
-                    url: baseServiceUrl + '/api/user/profile',
-                    data: userData,
-                    headers: this.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
-            },
-
-            changePass: function(passData, success, error) {
-                var request = {
-                    method: 'PUT',
-                    url: baseServiceUrl + '/api/user/changePassword',
-                    data: passData,
-                    headers: this.getAuthHeaders()
-                };
-                $http(request).success(success).error(error);
+            getName: function() {
+                return localStorage.getItem('name');
             }
         }
     }
-)
+);
