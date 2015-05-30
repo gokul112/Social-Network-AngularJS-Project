@@ -1,9 +1,4 @@
-﻿<div class="logo btn-primary">
-    <a href="#/"><img src="img/beer.png" /></a>
-    <span>Seems Legit Bro</span>
-</div>
-
-<header class="header" id="header" ng-if="isLogged">
+﻿<header class="header" id="header" data-ng-if="isLogged">
     <nav class="navbar btn-warning" id="navbar">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -25,20 +20,32 @@
                         <u>{{ name }}</u>
                     </a>
                 </li>
-                <li><a href="#/">News Feed</a></li>
-                <li><a href="#/FriendRequests">Friend Requests</a></li>
-                <li><a href="#/EditProfile">Edit Profile</a></li>
-                <li><a href="#/ChangePassword">Change Password</a></li>
+                <li>
+                    <a href="#/"><span><img src="img/news-feed.png" /></span></a>
+                </li>
+                <li>
+                    <a href="#/FriendRequests"><span><img src="img/friend-requests.png" alt="Friend request"/></span></a>
+                </li>
+                <li>
+                    <a href="#/EditProfile"><span><img src="img/profile-settings.png" alt="Profile settings"/></span></a>
+                </li>
+                <li>
+                    <a href="#/ChangePassword"><span><img src="img/change-password.png" alt="Password change" /></span></a>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav pull-right">
                 <li>
-                    <input type="text" id="searchBox" value="" ng-model="searchBox"/>
+                    <input type="text" id="searchBox" value="" data-ng-model="searchBox"/>
                     <a id="searchButton" ng-href="#/Search/{{searchBox}}"><img src="img/search.png" alt=""></a>
                 </li>
             </ul>
             <ul class="nav navbar-nav">
-                <li ng-controller="AuthenticationController"><a href="" style="color: #F96C65;" ng-click="logout()">Logout</a></li>
+                <li ng-controller="AuthenticationController">
+                    <a href="" data-ng-click="logout()">
+                        <span><img src="img/logout.png" alt="Logout"/></span>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
