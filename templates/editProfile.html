@@ -2,28 +2,25 @@
 
 <div class="main">
     <section class="edit-profile">
-        <form class="register form-horizontal" ng-controller="AuthenticationController" ng-init="getUserData()" ng-submit="editProfile()">
+        <form class="register form-horizontal" data-ng-controller="UserEditProfileController" data-ng-init="getUserData()">
             <fieldset>
                 <legend>Edit Profile</legend>
                 <div class="col-lg-9 form-info">
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Name:</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control" ng-model="userData.name" placeholder="Name">
+                            <input type="text" class="form-control" data-ng-model="userData.name" placeholder="Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Email:</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control" ng-model="userData.email" placeholder="Email">
+                            <input type="text" class="form-control" data-ng-model="userData.email" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label style="margin-left: 20px;" class="col-lg-3 control-label">Cover Image:</label>
+                        <label class="col-lg-3 control-label">Cover Image:</label>
                         <div class="col-lg-3 picture-upload">
-                            <div class="form-group">
-                                <img class="chooseCover" id="coverPictureData" src="{{ userData.coverImageData }}" />
-                            </div>
                             <div class="form-group">
                                 <p class="picture-name"></p>
                                 <button type="button" id="upload-cover-file-button" class="btn btn-md btn-info">Upload</button>
@@ -37,13 +34,13 @@
                         <div class="col-lg-9">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" class="genderRadio" id="gender1" ng-model="gender" name="gender-radio" value="Male">Male
+                                    <input type="radio" class="genderRadio" id="gender1" data-ng-model="userData.gender" name="gender-radio" value="Male">Male
                                 </label>
                                 <label>
-                                    <input type="radio" class="genderRadio" id="gender2" ng-model="gender" name="gender-radio" value="Female">Female
+                                    <input type="radio" class="genderRadio" id="gender2" data-ng-model="userData.gender" name="gender-radio" value="Female">Female
                                 </label>
                                 <label>
-                                    <input type="radio" class="genderRadio" id="gender0" ng-model="gender" name="gender-radio" value="Other">Other
+                                    <input type="radio" class="genderRadio" id="gender0" data-ng-model="userData.gender" name="gender-radio" value="Other">Other
                                 </label>
                             </div>
                         </div>
@@ -51,9 +48,6 @@
                 </div>
 
                 <div class="col-lg-3 picture-upload">
-                    <div class="form-group">
-                        <img class="thumbnail picture-preview" id="profilePictureData" src="{{ userData.profileImageData }}" />
-                    </div>
                     <div class="form-group">
                         <p class="picture-name"></p>
                         <button type="button" id="upload-file-button" class="btn btn-md btn-info">Upload</button>
@@ -64,7 +58,9 @@
 
                 <div class="form-group col-lg-12">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <input type="submit" name="name" value="Save Changes" class="btn btn-lg btn-primary" />
+                        <a data-ng-click="updateProfile(userData)" class="button">
+                            <input type="submit" name="name" value="Save Changes" class="btn btn-lg btn-primary" />
+                        </a>
                         <button type="button" class="cancel-btn btn btn-lg btn-default">Cancel</button>
                     </div>
                 </div>

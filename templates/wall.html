@@ -1,7 +1,7 @@
 ﻿<div ng-include="'templates/navbar.html'"></div>
 
 <div>
-    <header class="header" id="header" ng-init="initialiseWallOwnerData()" style="margin-top: -20px; background-size: cover; background-position: center center;">
+    <header class="header" id="header" data-ng-init="initialiseWallOwnerData()" style="margin-top: -20px; background-size: cover; background-position: center center;">
         <div class="image-container" id="userProfileImage">
             <img class="thumbnail" src="{{wallOwner.profileImageData}}"/>
         </div>
@@ -10,7 +10,7 @@
         </div>
     </header>
 </div>
-<div class="main" ng-controller="PostsController" ng-init="getWallOwnerPosts()">
+<div class="main" data-ng-controller="PostsController" ng-init="getWallOwnerPosts()">
     <ul>
         <li ng-repeat="post in wallPosts" class="btn-default post">
             <div style="text-align: right;">

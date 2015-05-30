@@ -31,7 +31,6 @@
         authenticationService.login(data, function (serverData) {
             authenticationService.setCredentials(serverData);
             authenticationService.getDataAboutMe(function(successData) {
-                authenticationService.setProfileImage(successData.profileImageData);
                 authenticationService.setName(successData.name);
 
                 $scope.navigateToPage('You have logged in successfully.');
@@ -68,23 +67,19 @@
     }
 
     $scope.editProfile = function() {
-        var name = $scope.userData.name;
-        var email = $scope.userData.email;
-        var coverImage = $('#coverPictureData').attr('src');
-        var profileImage = $('#profilePictureData').attr('src');
-        var gender = $("input:radio[name=gender-radio]:checked").val();
-
         var data = {};
-        data['name'] = name;
-        data['email'] = email;
-        data['profileImageData'] = profileImage;
-        data['coverImageData'] = coverImage;
-        data['gender'] = gender;
+
+        data['name'] = $scope.userData.name;;
+        data['email'] = $scope.userData.email;
+        data['profileImageData'] = $('#coverPictureData').attr('src');
+        data['coverImageData'] = $('#profilePictureData').attr('src');
+        data['gender'] = $("input:radio[name=gender-radio]:checked").val();
 
         authenticationService.editProfile(data, function (serverData) {
             $scope.navigateToPage(serverData.message);
+
             authenticationService.setProfileImage(profileImage);
-        }, function (errorMessage) {
+        }, function (error) {
             if (error.message === "Session token expired or not valid.") {
                 $scope.clearCredentials();
                 $scope.navigateToPage("Your session has expired. Please login again");
