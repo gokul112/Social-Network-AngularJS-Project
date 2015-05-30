@@ -23,12 +23,9 @@
     };
 
     $scope.login= function() {
-        var username = $scope.username;
-        var password = $scope.password;
-
         var data = {
-            'username': username,
-            'password' : password
+            'username': $scope.username,
+            'password' :$scope.password
         };
 
         authenticationService.login(data, function (serverData) {
@@ -51,20 +48,14 @@
     }
 
     $scope.register = function() {
-        var username = userData.username;
-        var password = $scope.password;
-        var confirmPassword = $scope.confirmPassword;
-        var name = $scope.name;
-        var email = $scope.email;
-        var gender = $scope.gender;
 
         var data = {
-            'username': username,
-            'password': password,
-            'confirmPassword': confirmPassword,
-            'name': name,
-            'email' : email,
-            'gender' : gender
+            'username': $scope.username,
+            'password': $scope.password,
+            'confirmPassword': $scope.confirmPassword,
+            'name': $scope.name,
+            'email' : $scope.email,
+            'gender' : $scope.gender
         }
 
         authenticationService.register(data, function (serverData) {
