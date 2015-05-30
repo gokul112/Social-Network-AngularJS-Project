@@ -1,29 +1,24 @@
 ﻿<div data-ng-include="'templates/navbar.html'"></div>
 
-<div class="main">
-    <header ng-if="!isLogged">
-        <h1 class="center">
-                Welcome to the Social Network
-            </h1>
-        <div class="row home-buttons-container">
-            <div class="col-md-12">
-                <div class="center col-lg-6">
-                    <a href="#">
-                        <a href="#/Login">
-                            <button type="button" class="btn btn-lg btn-warning home-btn">Login</button>
-                        </a>
-                    </a>
-                </div>
-                <div class="center col-lg-6">
-                    <a href="#">
-                        <a href="#/Register">
-                            <button type="button" class="btn btn-lg btn-success home-btn"> Register</button>
-                        </a>
-                    </a>
-                </div>
-            </div>
+<header ng-if="!isLogged">
+    <h1 class="center">
+            Welcome to the Social Network
+        </h1>
+    <div class="row home-buttons-container">
+        <div class="center col-lg-16">
+            <a href="#">
+                <a href="#/Login">
+                    <button type="button" class="btn btn-lg btn-success">Login</button>
+                </a>
+            </a>
+            <span>/</span>
+            <a href="#">
+                <a href="#/Register">
+                    <button type="button" class="btn btn-lg btn-danger"> Register</button>
+                </a>
+            </a>
         </div>
-    </header>
-</div>
+    </div>
+</header>
 
-<div ng-include="'templates/newsFeed.html'" ng-if="isLogged"></div>
+<div data-ng-include="'templates/newsFeed.html'" ng-if="isLogged"></div>

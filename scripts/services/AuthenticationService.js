@@ -5,14 +5,14 @@
 
     service.login = function (loginData, success, error) {
         $http.post(serviceUrl + '/users/login', loginData)
-            .success(function (data, status, headers, config) {
+            .success(function (data) {
                 success(data);
             }).error(error);
     };
 
     service.register = function (registerData, success, error) {
         $http.post(serviceUrl + '/users/register', registerData)
-            .success(function (data, status, headers, config) {
+            .success(function (data) {
                 success(data);
             }).error(function(data) {
                 error(data);
@@ -21,7 +21,7 @@
 
     service.editProfile = function(editData, success, error) {
         $http.put(serviceUrl + '/me', editData, { headers: this.getHeaders() })
-            .success(function (data, status, headers, config) {
+            .success(function (data) {
                 success(data);
             }).error(function (data) {
                 error(data);
@@ -30,7 +30,7 @@
 
     service.changePassword = function(data, success, error) {
         $http.put(serviceUrl + '/me/changepassword', data, { headers: this.getHeaders() })
-            .success(function (data, status, headers, config) {
+            .success(function (data) {
                 success(data);
             }).error(function (data) {
                 error(data);
@@ -39,7 +39,7 @@
 
     service.getDataAboutMe = function(success, error) {
         $http.get(serviceUrl + '/me', { headers: this.getHeaders() })
-            .success(function (data, status, headers, config) {
+            .success(function (data) {
                 success(data);
             }).error(function (data) {
                 error(data);
@@ -48,7 +48,7 @@
 
     service.searchUsers = function (id, success, error) {
         $http.get(serviceUrl + '/users/search?searchTerm=' + id, { headers: this.getHeaders() })
-            .success(function (data, status, headers, config) {
+            .success(function (data) {
                 success(data);
             }).error(function (data) {
                 error(data);
@@ -57,16 +57,17 @@
 
     service.getUserFullData = function (id, success, error) {
         $http.get(serviceUrl + '/users/' + id, { headers: this.getHeaders() })
-            .success(function (data, status, headers, config) {
+            .success(function (data) {
                 success(data);
             }).error(function (data) {
                 error(data);
             });
     }
 
-    service.setCredentials = function (serverData) {
-        localStorage['sessionToken'] = serverData.access_token;
-        localStorage['username'] = serverData.userName;
+    service.setCredentials = function (data) {
+        localStorage['sessionToken'] = data.access_token;
+        localStorage['username'] = data.userName;
+        localStorage['name'] = data.name;
     };
 
     service.setProfileImage = function(profileImage) {
