@@ -1,9 +1,8 @@
-﻿app.controller('FriendsController',
-    function ($scope, friendsManagerService, authenticationService, notifyService, $route, $routeParams) {
+﻿app.controller('FriendsController', function ($scope, friendsManagerService, authenticationService, $route, $routeParams) {
 
     $scope.setCurrentUser = function() {
         $scope.currentUser = $routeParams.id;
-    };
+    }
 
     $scope.setCurrentName = function() {
         authenticationService.getUserFullData($routeParams.id, function(serverData) {
@@ -15,7 +14,7 @@
                 return;
             }
         });
-    };
+    }
 
     $scope.getFriendRequests = function() {
         friendsManagerService.getFriendRequests(function(serverData) {
@@ -26,32 +25,30 @@
                 $scope.navigateToPage("Your session has expired. Please login again");
                 return;
             }
-
-            notifyService.showError("There was an error loading the requests", error);
+            poppy.pop('error', 'Error', 'There was an error loading the requests');
         });
-    };
+    }
 
     $scope.submitPost = function () {
         var user = $routeParams.id;
         var content = $('#postTextArea').val();
         if (!content) {
-            notifyService.showError("The post content cannot be empty", error);
+            poppy.pop('error', 'Error', 'The post content cannot be empty');
             return;
         }
 
         friendsManagerService.newPost(user, content, function (serverData) {
             $route.reload();
-            notifyService.showInfo("New post created successfully");
+            poppy.pop('success', 'Success', 'New post created successfully');
         }, function (error) {
             if (error.message === "Session token expired or not valid.") {
                 $scope.clearCredentials();
                 $scope.navigateToPage("Your session has expired. Please login again");
                 return;
             }
-
-            notifyService.showError("An error occured when trying to submit the post");
+            poppy.pop('error', 'Error', 'An error occured when trying to submit the post');
         });
-    };
+    }
 
     $scope.acceptFriendRequest = function(id) {
         friendsManagerService.acceptFriendRequest(id, function(successData) {
@@ -62,10 +59,9 @@
                 $scope.navigateToPage("Your session has expired. Please login again");
                 return;
             }
-
-            notifyService.showError("There was an error approving the request");
+            poppy.pop('error', 'Error', 'There was an error approving the request');
         });
-    };
+    }
 
     $scope.rejectFriendRequest = function (id) {
         friendsManagerService.rejectFriendRequest(id, function (successData) {
@@ -76,10 +72,9 @@
                 $scope.navigateToPage("Your session has expired. Please login again");
                 return;
             }
-
-            notifyService.showError("There was an error rejecting the reques");
+            poppy.pop('error', 'Error', 'There was an error rejecting the request');
         });
-    };
+    }
 
     $scope.getOwnFriendsPreview = function () {
         friendsManagerService.getOwnFriendsPreview(function(serverData) {
@@ -90,10 +85,9 @@
                 $scope.navigateToPage("Your session has expired. Please login again");
                 return;
             }
-
-            notifyService.showError("There was an error getting the friends preview");
+            poppy.pop('error', 'Error', 'There was an error getting the friends preview');
         });
-    };
+    }
 
     $scope.getWallOwnerFriendsPreview = function () {
         if ($routeParams.id === localStorage['username']) {
@@ -113,7 +107,7 @@
                 return;
             }
         });
-    };
+    }
 
     $scope.getWallOwnerFriendsDetails = function () {
         if ($routeParams.id === localStorage['username']) {
@@ -128,10 +122,9 @@
                 $scope.navigateToPage("Your session has expired. Please login again");
                 return;
             }
-
-            notifyService.showError("There was an error getting the friends details");
+            poppy.pop('error', 'Error', 'There was an error getting the friends details');
         });
-    };
+    }
 
     $scope.getFriendsDetails = function () {
         friendsManagerService.getOwnFriendsDetails(function (serverData) {
@@ -142,7 +135,7 @@
                 $scope.navigateToPage("Your session has expired. Please login again");
                 return;
             }
-            notifyService.showError("There was an error getting the friends details");
+            poppy.pop('error', 'Error', 'There was an error getting the friends details');
         });
     }
 });

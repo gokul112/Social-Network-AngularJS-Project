@@ -1,4 +1,4 @@
-app = angular.module('SocialNetwork', ['ngRoute']);
+var app = angular.module('SocialNetwork', ['ngRoute']);
 
 app.constant('baseServiceUrl', 'http://softuni-social-network.azurewebsites.net/api');
 
@@ -18,9 +18,9 @@ app.run(function ($rootScope) {
         }
 
         if (message) {
-            notifyService.showInfo("Success", message);
+            poppy.pop('success', 'Success', message);
         }
-    };
+    }
 
     $rootScope.clearCredentials = function () {
         localStorage.clear();
@@ -30,81 +30,81 @@ app.run(function ($rootScope) {
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'partials/home.html',
+            templateUrl: 'templates/home.html',
             controller: 'MainController'
         })
         .when('/FriendRequests', {
-            templateUrl: 'partials/friendRequests.html',
-            controller: 'MainController',
-            resolve: {
-                factory: redirectToHomeIfNotLogged
-            }
+        templateUrl: 'templates/friendRequests.html',
+        controller: 'MainController',
+        resolve: {
+            factory: redirectToHomeIfNotLogged
+        }
         })
         .when('/Search/:id', {
-            templateUrl: 'partials/searchResults.html',
+            templateUrl: 'templates/searchResults.html',
             controller: 'MainController',
             resolve: {
                 factory: redirectToHomeIfNotLogged
             }
         })
         .when('/EditProfile', {
-            templateUrl: 'partials/editProfile.html',
+            templateUrl: 'templates/editProfile.html',
             controller: 'MainController',
             resolve: {
                 factory: redirectToHomeIfNotLogged
             }
         })
         .when('/ChangePassword', {
-            templateUrl: 'partials/changePassword.html',
+            templateUrl: 'templates/changePassword.html',
             controller: 'MainController',
             resolve: {
                 factory: redirectToHomeIfNotLogged
             }
         })
         .when('/Login', {
-            templateUrl: 'partials/login.html',
+            templateUrl: 'templates/login.html',
             controller: 'MainController',
             resolve: {
                 factory: redirectToHomeIfLogged
             }
         })
         .when('/Register', {
-            templateUrl: 'partials/register.html',
+            templateUrl: 'templates/register.html',
             controller: 'MainController',
             resolve: {
                 factory: redirectToHomeIfLogged
             }
         })
         .when('/Search/:id', {
-            templateUrl: 'partials/search.html',
+            templateUrl: 'templates/search.html',
             controller: 'MainController',
             resolve: {
                 factory: redirectToHomeIfNotLogged
             }
         })
         .when('/User/:id', {
-            templateUrl: 'partials/wall.html',
+            templateUrl: 'templates/wall.html',
             controller: 'MainController',
             resolve: {
                 factory: redirectToHomeIfNotLogged
             }
         })
         .when('/OwnFriends', {
-            templateUrl: 'partials/friendsDetailedList.html',
+            templateUrl: 'templates/friendsDetailedList.html',
             controller: 'MainController',
             resolve: {
                 factory: redirectToHomeIfNotLogged
             }
         })
         .when('/:id/Friends', {
-            templateUrl: 'partials/friendsDetailedList.html',
+            templateUrl: 'templates/friendsDetailedList.html',
             controller: 'MainController',
             resolve: {
                 factory: redirectToHomeIfNotLogged
             }
         })
         .when('/Post/:id', {
-            templateUrl: 'partials/detailedPost.html',
+            templateUrl: 'templates/detailedPost.html',
             controller: 'MainController',
             resolve: {
                 factory: redirectToHomeIfNotLogged
@@ -119,6 +119,7 @@ function redirectToHomeIfNotLogged() {
         var splitted = window.location.href.split('#');
         window.location.replace(splitted[0] + '#/');
 
+        poppy.pop('error', 'Error', 'You must be logged in to access this page');
     }
 }
 
@@ -127,5 +128,6 @@ function redirectToHomeIfLogged() {
         var splitted = window.location.href.split('#');
         window.location.replace(splitted[0] + '#/');
 
+        poppy.pop('error', 'Error', 'You have already logged in');
     }
 }

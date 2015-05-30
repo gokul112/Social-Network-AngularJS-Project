@@ -1,22 +1,18 @@
-﻿'use strict';
-
-app.factory('authenticationService', function ($http, baseServiceUrl) {
+﻿app.factory('authenticationService', function ($http, baseServiceUrl) {
     var service = {};
 
     var serviceUrl = baseServiceUrl;
 
     service.login = function (loginData, success, error) {
         $http.post(serviceUrl + '/users/login', loginData)
-            .success(function (data) {
-                sessionStorage['currentUser'] = JSON.stringify(data);
+            .success(function (data, status, headers, config) {
                 success(data);
             }).error(error);
     };
 
     service.register = function (registerData, success, error) {
         $http.post(serviceUrl + '/users/register', registerData)
-            .success(function (data) {
-                sessionStorage['currentUser'] = JSON.stringify(data);
+            .success(function (data, status, headers, config) {
                 success(data);
             }).error(function(data) {
                 error(data);
@@ -30,7 +26,7 @@ app.factory('authenticationService', function ($http, baseServiceUrl) {
             }).error(function (data) {
                 error(data);
             });
-    };
+    }
 
     service.changePassword = function(data, success, error) {
         $http.put(serviceUrl + '/me/changepassword', data, { headers: this.getHeaders() })
@@ -39,7 +35,7 @@ app.factory('authenticationService', function ($http, baseServiceUrl) {
             }).error(function (data) {
                 error(data);
             });
-    };
+    }
 
     service.getDataAboutMe = function(success, error) {
         $http.get(serviceUrl + '/me', { headers: this.getHeaders() })
@@ -48,7 +44,7 @@ app.factory('authenticationService', function ($http, baseServiceUrl) {
             }).error(function (data) {
                 error(data);
             });
-    };
+    }
 
     service.searchUsers = function (id, success, error) {
         $http.get(serviceUrl + '/users/search?searchTerm=' + id, { headers: this.getHeaders() })
@@ -57,7 +53,7 @@ app.factory('authenticationService', function ($http, baseServiceUrl) {
             }).error(function (data) {
                 error(data);
             });
-    };
+    }
 
     service.getUserFullData = function (id, success, error) {
         $http.get(serviceUrl + '/users/' + id, { headers: this.getHeaders() })
@@ -66,7 +62,7 @@ app.factory('authenticationService', function ($http, baseServiceUrl) {
             }).error(function (data) {
                 error(data);
             });
-    };
+    }
 
     service.setCredentials = function (serverData) {
         localStorage['sessionToken'] = serverData.access_token;
@@ -75,11 +71,11 @@ app.factory('authenticationService', function ($http, baseServiceUrl) {
 
     service.setProfileImage = function(profileImage) {
         localStorage['profileImage'] = profileImage;
-    };
+    }
 
     service.setName = function(name) {
         localStorage['name'] = name;
-    };
+    }
 
     service.getUsername = function () {
         return localStorage['username'];
