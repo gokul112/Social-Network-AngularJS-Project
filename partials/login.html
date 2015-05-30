@@ -1,10 +1,30 @@
-<form>
-    <label for="username">Username:</label>
-    <input type="text" id="username" data-ng-model="userData.username" required/><br />
+﻿<div ng-include="'templates/navbar.html'"></div>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" data-ng-model="userData.password" required/><br />
-
-    <a ng-click="login(userData)" class="button">Login</a>
-    <a href="#/register" class="link">Register</a>
-</form>
+<div class="main" id="main">
+    <div class="row">
+        <form class="login form-horizontal col-md-6" ng-controller="AuthenticationController" ng-submit="login()">
+            <fieldset>
+                <legend><h2>Login</h2></legend>
+                <div class="form-group">
+                    <label for="login-username" class="col-lg-4 control-label">Username</label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" ng-model="username" id="login-username" placeholder="Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="login-password" class="col-lg-4 control-label">Password</label>
+                    <div class="col-lg-8">
+                        <input type="password" class="form-control" ng-model="password" id="login-password" placeholder="Password">
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <input type="submit" class="btn btn-lg btn-primary" value="Login"/>
+                    <span>or</span>
+                    <a href="#/Register">Register</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

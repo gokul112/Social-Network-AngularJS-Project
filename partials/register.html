@@ -1,28 +1,52 @@
-<form action="">
-    <fieldset id="Registration">
-        <legend>Register</legend>
-        <label for="username">Username:</label>
-        <input type="text" id="username" ng-model="userData.username" required />
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" ng-model="userData.password" required />
-        <br>
-        <label for="confirmPassword">Confirm password:</label>
-        <input type="password" id="confirmPassword" ng-model="userData.confirmPassword" required />
-        <br>
-        <label for="name">Name:</label>
-        <input type="text" id="name" ng-model="userData.name" required />
-        <br>
-        <label for="email">Email:</label>
-        <input type="text" id="email" ng-model="userData.email" required />
-        <br>
-        <label >Gender:
-            <input type="radio" name="gender" value="male">Male
-            <input type="radio" name="gender" value="female">Female
-            <input type="radio" name="gender" value="other">Other
-        </label>
-    </fieldset>
-    <input type="reset" value="Clear Form">
-    <a ng-click="register(userData)" class="button">Register</a>
-    <a href="#/login" class="link">Login</a>
-</form>
+﻿
+<div ng-include="'templates/navbar.html'"></div>
+
+<div class="main">
+    <div class="row">
+        <form class="register form-horizontal col-lg-12" ng-controller="AuthenticationController" ng-submit="register()">
+            <fieldset>
+                <legend><h2>Create a new account</h2></legend>
+                <div class="col-lg-9 form-info">
+                    <div class="form-group">
+                        <label for="reg-username" class="col-lg-3 control-label">Username:</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" ng-model="username" placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password" class="col-lg-3 control-label">Password:</label>
+                        <div class="col-lg-9">
+                            <input type="password" class="form-control" ng-model="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password" class="col-lg-3 control-label">Confirm password:</label>
+                        <div class="col-lg-9">
+                            <input type="password" class="form-control" ng-model="confirmPassword" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-name" class="col-lg-3 control-label">Name:</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" ng-model="name" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-name" class="col-lg-3 control-label">Email:</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" ng-model="email" placeholder="Name">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-12">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <input type="submit" class="btn btn-lg btn-primary" value="Register">
+                        <span>or</span>
+                        <a href="#/Login">Login</a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>    
+</div>

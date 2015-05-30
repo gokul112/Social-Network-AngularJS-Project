@@ -1,0 +1,50 @@
+﻿<div ng-include="'templates/navbar.html'"></div>
+
+<div class="main" ng-controller="PostsController" ng-init="getPostDetails()">
+    <ul>
+        <li class="btn-default post">
+            <div style="text-align: right;">
+                <button class="btn btn-danger" ng-if="isDeletablePost(post)" ng-click="deletePost(post.id)">Delete</button>
+            </div>
+            <img src="{{post.author.profileImageData}}" class="smallThumbnail" alt="" />
+            <div style="display: inline;">
+                <a href="#/User/{{post.author.username}}" class="userName" data-id="{{post.author.username}}">{{post.author.name}}</a>
+            </div>
+            <br />
+            <div class="postDate" style="display: inline;">{{post.date | date }}</div>
+            <div class="postContent btn-info" style="margin: 5px; padding: 5px;">{{ post.postContent }}</div>
+            <div style="text-align: right;">
+                {{post.likesCount}}
+                <span class="btn likeButton btn-success" ng-if="!post.liked && isPostOwnerOrAuthorFriend(post)" ng-click="likePost(post.id)">Like</span>
+                <span class="btn likeButton btn-danger" ng-if="post.liked && isPostOwnerOrAuthorFriend(post)" ng-click="unlikePost(post.id)">Unlike</span>
+                <span class="btn btn-warning btn commentsButton" ng-click="showComments(post.id)">{{post.totalCommentsCount}} Comments</span>
+                <span class="btn btn-primary commentButton" ng-if="isPostOwnerOrAuthorFriend(post)" ng-click="showUserComment(post.id)">Comment</span>
+            </div>
+            <div class="userComment" id="userComment{{post.id}}" style="margin-top: 10px; margin-bottom: 10px; display: none;">
+                <textarea style="background: #c0c0c0" name cols="60" rows="4" id="userCommentContent{{post.id}}"></textarea>
+                <div style="text-align: right;">
+                    <span class="cancelButton btn btn-danger" ng-click="cancelComment(post.id)">Cancel</span>
+                    <span class="submitButton btn btn-primary" ng-click="submitComment(post.id)">Submit</span>
+                </div>
+            </div>
+            <div id="comments-{{post.id}}" style="display: none;">
+                <ul ng-init="loadComments()">
+                    <li ng-repeat="comment in comments" class="commentBox" ng-init="setHoverEvents()">
+                        <img src="{{comment.author.profileImageData}}" class="smallThumbnail" alt="" />
+                        <div style="display: inline;">
+                            <a href="#/User/{{comment.author.username}}" class="userName" data-id="{{comment.author.username}}">{{ comment.author.name }}</a>
+                        </div>
+                        <div>{{ comment.date | date }}</div>
+                        <div class="commentContent btn-primary">{{ comment.commentContent }}</div>
+                        <div style="text-align: right;">
+                            {{comment.likesCount}}
+                            <span class="likeButton btn btn-success" ng-if="!comment.liked && isPostOwnerOrAuthorFriend(post)" ng-click="likeComment(post.id, comment.id)">Like</span>
+                            <span class="likeButton btn btn-danger" ng-if="comment.liked && isPostOwnerOrAuthorFriend(post)" ng-click="unlikeComment(post.id, comment.id)">Unlike</span>
+                            <button class="btn btn-danger" ng-if="isDeletableComment(comment.author, post.author)" ng-click="deleteComment(post.id, comment.id)">Delete</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
