@@ -1,4 +1,4 @@
-app.controller('MainController', function ($scope, authenticationService, friendsManagerService, $routeParams) {
+﻿app.controller('MainController', function ($scope, authenticationService, friendsManagerService, $routeParams) {
 
     $scope.username = authenticationService.getUsername();
     $scope.profileImage = localStorage['profileImage'];
