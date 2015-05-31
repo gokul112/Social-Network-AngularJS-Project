@@ -4,7 +4,7 @@
             <div style="text-align: right;">
                 <button class="btn btn-danger" ng-if="isDeletablePost(post)" ng-click="deletePost(post.id)">Delete</button>
             </div>
-            <img src="{{post.author.profileImageData}}" class="smallThumbnail" alt=""/>
+            <img src="{{post.author.profileImageData || 'img/default-profile-image.png'}}" class="smallThumbnail" alt=""/>
             <div style="display: inline;">
                 <a href="#/User/{{post.author.username}}" class="userName" data-id="{{post.author.username}}">{{post.author.name}}</a>
                 posted on
@@ -30,7 +30,7 @@
             <div id="comments-{{post.id}}" style="display: none;">
                 <ul>
                     <li ng-repeat="comment in post.comments" class="commentBox" ng-init="setHoverEvents()">
-                        <img src="{{comment.author.profileImageData}}" class="smallThumbnail" alt=""/>
+                        <img src="{{comment.author.profileImageData || 'img/default-profile-image.png'}}" class="smallThumbnail" alt=""/>
                         <div style="display: inline;">
                             <a href="#/User/{{comment.author.username}}" class="userName" data-id="{{comment.author.username}}">{{ comment.author.name }}</a>
                         </div>
@@ -56,7 +56,7 @@
     <div class="btn-danger totalCount"><a href="#/{{username}}/Friends" style="color: white;">Total Count: {{ ownFriendsPreview.totalCount }}</a></div>
     <ul>
         <li ng-repeat="friend in ownFriendsPreview.friends" class="btn-primary friendPreview" style="display: inline-block; width: 200px;">
-            <a href="#/User/{{friend.username}}"><img src="{{friend.profileImageData}}" alt="" style="margin-left: 12px; width: 150px; height:150px" /></a>
+            <a href="#/User/{{friend.username}}"><img src="{{friend.profileImageData || 'img/default-profile-image.png'}}" alt="" style="margin-left: 12px; width: 150px; height:150px" /></a>
             <div style="text-align: center;">{{friend.name}}</div>
         </li>
     </ul>

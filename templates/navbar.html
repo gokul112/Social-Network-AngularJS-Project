@@ -1,66 +1,74 @@
-﻿<header class="header" id="header" data-ng-if="isLogged">
-    <nav class="navbar btn-warning" id="navbar">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>
-                    <div class="image-container" id="userProfileImage">
-                        <img class="smallThumbnail" src="{{ profileImage }}"/>
-                    </div>
-                </li>
-                <li>
-                    <a class="navbar-brand" id="usernamePreview" href="#/User/{{ username }}">
-                       {{ name }}
-                    </a>
-                </li>
-                <li>
-                    <a href="#/"><span><img src="img/news-feed.png" /></span></a>
-                </li>
-                <li>
-                    <a href="#/FriendRequests"><span><img src="img/friend-requests.png" alt="Friend request"/></span></a>
-                </li>
-                <li>
-                    <a href="#/EditProfile"><span><img src="img/profile-settings.png" alt="Profile settings"/></span></a>
-                </li>
-                <li>
-                    <a href="#/ChangePassword"><span><img src="img/change-password.png" alt="Password change" /></span></a>
-                </li>
-            </ul>
+﻿<header data-ng-if="isLogged">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" >
+                <ul class="nav navbar-nav">
+                    <li>
+                        <div class="image-container" id="userProfileImage">
+                            <img data-ng-src="{{profileImageData || 'img/default-profile-image.png'}}" alt="profile picture"/>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#/User/{{ username }}">{{ name }} </a>
+                    </li>
+                    <li>
+                        <a href="#/"><span><img src="img/news-feed.png" /></span></a>
+                    </li>
+                    <li>
+                        <a href="#/FriendRequests"><span><img src="img/friend-requests.png" alt="Friend request"/></span></a>
+                    </li>
+                    <li>
+                        <a href="#/EditProfile"><span><img src="img/profile-settings.png" alt="Profile settings"/></span></a>
+                    </li>
+                    <li>
+                        <a href="#/ChangePassword"><span><img src="img/change-password.png" alt="Password change" /></span></a>
+                    </li>
+                </ul>
 
-            <ul class="nav navbar-nav pull-right">
-                <li>
-                    <input type="text" id="searchBox" value="" data-ng-model="searchBox"/>
-                    <a id="searchButton" ng-href="#/Search/{{searchBox}}"><img src="img/search.png" alt=""></a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li ng-controller="AuthenticationController">
-                    <a href="" data-ng-click="logout()">
-                        <span><img src="img/logout.png" alt="Logout"/></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                <ul class="nav navbar-nav pull-right">
+                    <li>
+                        <form class="form-search">
+                            <input type="text" class="input-medium search-query" data-ng-model="searchBox">
+                            <a id="searchButton" ng-href="#/Search/{{searchBox}}">
+                                <img src="img/search.png" alt="seach">
+                            </a>
+                        </form>
+
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li ng-controller="AuthenticationController">
+                        <a href="" data-ng-click="logout()">
+                            <span><img src="img/logout.png" alt="Logout"/></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </div><!-- end navbar-collapse -->
+        </div><!-- end contrainer-fluid -->
     </nav>
 </header>
+
 <div class="hover-box" style="visibility: hidden;">
     <div ng-if="!hasLoadedPreview()">Loading...</div>
-    <div class="hover-profile-image" ng-if="hasLoadedPreview()">
-        <img class="thumbnail" src="{{userPreviewData.profileImageData}}"/>
+    <div class="hover-profile-image" data-ng-if="hasLoadedPreview()">
+        <img class="thumbnail" src="{{userPreviewData.profileImageData || 'img/default-profile-image.png'}}"/>
     </div>
-    <div class="hover-profile-info" ng-if="hasLoadedPreview()">
-        <p class="hover-profile-name"><a href="#/User/{{ userPreviewData.username }}">{{userPreviewData.name}}</a></p>
+    <div class="hover-profile-info" data-ng-if="hasLoadedPreview()">
+        <p class="hover-profile-name"><a href="#/User/{{ userPreviewData.username}}">{{userPreviewData.name}}</a></p>
         <p>
-            <div class="btn btn-primary" ng-if="!isFriend() && !isFriendRequestSent() && !isSelf()" ng-click="sendFriendRequest()">Invite</div>
-            <div class="btn btn-warning" ng-if="!isFriend() && isFriendRequestSent() && !isSelf()">Friend request sent</div>
-            <div class="btn btn-info" ng-if="isFriend() && !isSelf()">Friend</div>
+            <div class="btn btn-primary" data-ng-if="!isFriend() && !isFriendRequestSent() && !isSelf()" ng-click="sendFriendRequest()">Invite</div>
+            <div class="btn btn-warning" data-ng-if="!isFriend() && isFriendRequestSent() && !isSelf()">Friend request sent</div>
+            <div class="btn btn-info" data-ng-if="isFriend() && !isSelf()">Friend</div>
         </p>
     </div>
 </div>
