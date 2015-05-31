@@ -1,32 +1,42 @@
 ﻿<div ng-include="'templates/navbar.html'"></div>
 
-<div class="main" id="main">
+<div class="container">
     <div class="row">
-        <form class="login form-horizontal col-md-6" ng-controller="AuthenticationController" ng-submit="login()">
-            <fieldset>
-                <legend><h2>Login</h2></legend>
-                <div class="form-group">
-                    <label for="login-username" class="col-lg-4 control-label">Username</label>
-                    <div class="col-lg-8">
-                        <input type="text" class="form-control" ng-model="username" id="login-username" placeholder="Username">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-login">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a href="#/Login" class="active" id="login-form-link">Login</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#/Register" id="register-form-link">Register</a>
+                        </div>
                     </div>
+                    <hr>
                 </div>
-                <div class="form-group">
-                    <label for="login-password" class="col-lg-4 control-label">Password</label>
-                    <div class="col-lg-8">
-                        <input type="password" class="form-control" ng-model="password" id="login-password" placeholder="Password">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form data-ng-controller="AuthenticationController" ng-submit="login()" id="login-form">
+                                <div class="form-group">
+                                    <input type="text"  data-ng-model="username" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                                </div>
+                                    <div class="form-group">
+                                        <input type="password" data-ng-model="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                                    </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            </fieldset>
-            <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-                    <input type="submit" class="btn btn-lg btn-primary" value="Submit"/>
-                    <span> or </span>
-                    <a href="#/Register">
-                        <button type="button" class="btn btn-lg btn-danger"> Register</button>
-                    </a>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>

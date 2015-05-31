@@ -1,6 +1,6 @@
 ﻿<div class="main" ng-controller="PostsController" ng-init="getNewsFeed()">
     <ul>
-        <li ng-repeat="post in newsFeed" class="btn-default post">
+        <li ng-repeat="post in newsFeed" class="comments">
             <div style="text-align: right;">
                 <button class="btn btn-danger" ng-if="isDeletablePost(post)" ng-click="deletePost(post.id)">Delete</button>
             </div>
@@ -51,7 +51,7 @@
         </li>
     </ul>
 </div>
-<div class="friendsPreview panel pull-right panel-info friends-preview col-xs-12" ng-controller="FriendsController" ng-init="getOwnFriendsPreview()">
+<div class="friendsPreview panel pull-right panel-info friends-preview col-xs-12" data-ng-controller="FriendsController" ng-init="getOwnFriendsPreview()">
     <div style="text-align: center; padding: 5px;">Friends</div>
     <div class="btn-danger totalCount"><a href="#/{{username}}/Friends" style="color: white;">Total Count: {{ ownFriendsPreview.totalCount }}</a></div>
     <ul>

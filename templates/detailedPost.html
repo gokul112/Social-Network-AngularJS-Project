@@ -4,7 +4,7 @@
     <ul>
         <li class="btn-default post">
             <div style="text-align: right;">
-                <button class="btn btn-danger" ng-if="isDeletablePost(post)" ng-click="deletePost(post.id)">Delete</button>
+                <button class="btn btn-danger" ng-if="isDeletablePost(post)" data-ng-click="deletePost(post.id)">Delete</button>
             </div>
             <img src="{{post.author.profileImageData}}" class="smallThumbnail" alt="" />
             <div style="display: inline;">

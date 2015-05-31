@@ -1,6 +1,10 @@
 html, body {
     height: 100%;
+    background-image: url('../img/background.png');
+    margin: 0;
+    padding: 0;
 }
+
 
 .jumbotron.vertical-center {
     margin-bottom: 0;
@@ -15,24 +19,92 @@ html, body {
     display: -webkit-flex;
     display: flex;
 
-    /* Align the bootstrap's container vertically */
     -webkit-box-align : center;
     -webkit-align-items : center;
     -moz-box-align : center;
     -ms-flex-align : center;
     align-items : center;
-
-    /* In legacy web browsers such as Firefox 9
-       we need to specify the width of the flex container */
     width: 100%;
 
-    /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
-       hence the bootstrap's container won't be aligned to the center anymore.
-
-       Therefore, we should use the following declarations to get it centered again */
     -webkit-box-pack : center;
     -moz-box-pack : center;
     -ms-flex-pack : center;
     -webkit-justify-content : center;
     justify-content : center;
+}
+
+#login-submit{
+    background: #539DC2;
+    color: black;
+}
+
+.panel-login>.panel-heading {
+    color: #00415d;
+    background-color: #fff;
+    border-color: #fff;
+    text-align:center;
+}
+
+.panel-login>.panel-heading a{
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    font-size: 15px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+    color: #029f5b;
+    font-size: 18px;
+}
+
+#register-submit{
+    background: #539DC2;
+    color: black;
+}
+
+.fb-profile img.fb-image-lg{
+    height: 140px;
+    z-index: 0;
+    width: 100%;
+    margin-bottom: 2px;
+}
+
+.fb-image-profile {
+    margin: -50px 10px 0px 50px;
+    z-index: 9;
+    width: 7%;
+}
+
+@media (max-width:768px) {
+
+    .fb-profile-text > h1 {
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .fb-image-profile {
+        margin: -45px 10px 0px 25px;
+        z-index: 9;
+        width: 20%;
+    }
+}
+
+.comments {
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    background: #ffffff;
+    width: 60%;
+    border-radius: 5px;
+}
+
+.friends{
+    padding: 10px;
+    margin:10px;
+    display: inline-block;
+    background: #ffffff;
+    width: 30%;
+    float: left;
 }
